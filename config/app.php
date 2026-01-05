@@ -97,7 +97,9 @@ return [
 
     'cipher' => 'AES-256-CBC',
 
-    'key' => env('APP_KEY'),
+    'debug' => (bool) env('APP_DEBUG', true), // FORCE DEBUG ON
+
+    'key' => env('APP_KEY', 'base64:wXH8M1L9zkVk1AF7Gh9AMCJld82/BcVayMyNS0WHkZM='), // Fallback Key
 
     'previous_keys' => [
         ...array_filter(
