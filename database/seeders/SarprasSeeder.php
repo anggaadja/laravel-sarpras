@@ -30,17 +30,19 @@ class SarprasSeeder extends Seeder
         ];
 
         foreach ($items as $item) {
-            Sarpras::create([
-                'kode' => $item['kode'],
-                'nama' => $item['nama'],
-                'kategori' => $item['kategori'],
-                'lokasi' => $item['lokasi'],
-                'jumlah' => $item['jumlah'],
-                'kondisi' => $item['kondisi'],
-                'tanggal' => Carbon::now()->subDays(rand(1, 365)),
-                'tanggal_perbaikan' => null,
-                'hasil_rekondisi' => null,
-            ]);
+            Sarpras::firstOrCreate(
+                ['kode' => $item['kode']], // Check by unique code
+                [
+                    'nama' => $item['nama'],
+                    'kategori' => $item['kategori'],
+                    'lokasi' => $item['lokasi'],
+                    'jumlah' => $item['jumlah'],
+                    'kondisi' => $item['kondisi'],
+                    'tanggal' => Carbon::now()->subDays(rand(1, 365)),
+                    'tanggal_perbaikan' => null,
+                    'hasil_rekondisi' => null,
+                ]
+            );
         }
     }
 }
